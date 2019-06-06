@@ -1,0 +1,393 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+a:hover {
+  text-decoration: none;
+}
+.main {
+  padding-top: 130px;
+}
+.cd-auto-hide-header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.cd-auto-hide-header::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.cd-auto-hide-header.is-hidden {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.cd-auto-hide-header .logo,
+.cd-auto-hide-header .nav-trigger {
+  position: absolute;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.cd-auto-hide-header .logo {
+  left: 5%;
+}
+.cd-auto-hide-header .logo a,
+.cd-auto-hide-header .logo img {
+  display: block;
+  width: 87%;
+}
+
+.cd-auto-hide-header .nav-trigger {
+  /* vertically align its content */
+  display: table;
+  height: 100%;
+  padding: 0 1em;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #bf2727;
+  font-weight: bold;
+  right: 0;
+  border-left: 1px solid #f2f2f2;
+}
+.cd-auto-hide-header .nav-trigger span {
+  /* vertically align inside parent element */
+  display: table-cell;
+  vertical-align: middle;
+}
+.cd-auto-hide-header .nav-trigger em,
+.cd-auto-hide-header .nav-trigger em::after,
+.cd-auto-hide-header .nav-trigger em::before {
+  /* this is the menu icon */
+  display: block;
+  position: relative;
+  height: 2px;
+  width: 22px;
+  background-color: #bf2727;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cd-auto-hide-header .nav-trigger em {
+  /* this is the menu central line */
+  margin: 6px auto 14px;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.cd-auto-hide-header .nav-trigger em::before,
+.cd-auto-hide-header .nav-trigger em::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+.cd-auto-hide-header .nav-trigger em::before {
+  /* this is the menu icon top line */
+  -webkit-transform: translateY(-6px);
+  -ms-transform: translateY(-6px);
+  transform: translateY(-6px);
+}
+.cd-auto-hide-header .nav-trigger em::after {
+  /* this is the menu icon bottom line */
+  -webkit-transform: translateY(6px);
+  -ms-transform: translateY(6px);
+  transform: translateY(6px);
+}
+
+.cd-auto-hide-header.nav-open .nav-trigger em {
+  /* transform menu icon into a 'X' icon */
+  background-color: rgba(255, 255, 255, 0);
+}
+.cd-auto-hide-header.nav-open .nav-trigger em::before {
+  /* rotate top line */
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.cd-auto-hide-header.nav-open .nav-trigger em::after {
+  /* rotate bottom line */
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.cd-primary-nav {
+  float: right;
+  height: 100%;
+  padding-right: 5%;
+}
+.cd-primary-nav > ul {
+  position: absolute;
+  z-index: 2;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: none;
+  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.2);
+}
+.cd-primary-nav > ul a {
+  /* target primary-nav links */
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5%;
+  color: #245fb9;
+  border-top: 1px solid #f2f2f2;
+}
+.cd-primary-nav > ul a:hover,
+.cd-primary-nav > ul a.active {
+  color: #bf2727;
+}
+
+.nav-open .cd-primary-nav ul,
+.cd-primary-nav ul:target {
+  /* 
+  	show primary nav - mobile only 
+  	:target is used to show navigation on no-js devices
+  */
+  display: block;
+  list-style-type: none;
+  padding: 0px;
+}
+
+.cd-secondary-nav {
+  position: relative;
+  z-index: 1;
+  clear: both;
+  width: 100%;
+  height: 50px;
+  background-color: #245fb9;
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+.cd-secondary-nav ul,
+.cd-secondary-nav li,
+.cd-secondary-nav a {
+  height: 100%;
+}
+.cd-secondary-nav ul {
+  /* enables a flex context for all its direct children */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 5%;
+  -webkit-overflow-scrolling: touch;
+}
+.cd-secondary-nav ul::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.cd-secondary-nav li {
+  display: inline-block;
+  float: left;
+  /* do not shrink - elements float on the right of the element */
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+.cd-secondary-nav li:last-of-type {
+  padding-right: 20px;
+}
+.cd-secondary-nav a {
+  display: block;
+  color: #ffffff;
+  opacity: 0.6;
+  line-height: 50px;
+  padding: 0 1em;
+}
+.cd-secondary-nav a:hover,
+.cd-secondary-nav a.active {
+  opacity: 1;
+}
+
+/* Carousel Custom */
+.carousel-caption {
+  background: #0000008a;
+  z-index: 0;
+}
+
+/* News Marquee */
+h2.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+  color: #265fb9;
+  background: #245fb91c;
+  padding: 10px;
+}
+h2.title span {
+  font-size: 12px;
+  line-height: 2.8;
+  background: #245fb940;
+  padding: 0px 10px;
+}
+.news {
+  background: #024d9e;
+  color: #fff;
+}
+
+.news a {
+  color: #fff;
+}
+
+/* Recent News */
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+}
+
+.recent-news {
+  display: flex;
+  gap: 1em;
+}
+.recent-news:hover .news-heading a h3 {
+  color: #245fb9;
+  transition: all 0.5s ease-in-out;
+}
+.news-img img {
+  width: 80px;
+  height: 105px;
+}
+
+.news-heading h3 {
+  font-size: 17px;
+  color: #2f2f2f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.news-img {
+  margin-right: 15px;
+}
+.news-heading i span {
+  margin-left: 10px;
+}
+
+.news-heading i {
+  color: #245fb9;
+  font-size: 13px;
+}
+/* Press */
+.press-release ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ffffff;
+  font-size: 14px;
+  transition: all 0.5s ease-in-out;
+}
+.press-release ul li:hover {
+  background: #e7edf7;
+  transition: all 0.5s ease-in-out;
+}
+.press-release ul li a {
+  color: #2f2f2f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.press-release ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.press-release ul li a i {
+  display: block;
+  color: #245fb9;
+  text-align: right;
+}
+.press-release ul li a span {
+  margin-left: 5px;
+}
+.icon-box:hover .icon-box-title h6 {
+  color: #245fb9;
+}
+.icon-box-image img {
+  width: 175px;
+  height: 123px;
+}
+.post-preview img {
+  width: 100%;
+  height: 233px;
+  object-fit: cover;
+}
+/* Footer */
+footer {
+  background: #245fb9;
+  padding: 90px 0 30px;
+}
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons > li {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+.social-icons > li > a {
+  font-size: 0.8125rem;
+  color: #96bffd;
+}
+
+.social-icons > li > a:hover,
+.social-icons > li > a:focus {
+  color: #ffffff;
+}
+
+.social-icons.text-center > li {
+  margin: 0 10px 0 10px;
+}
+
+.social-icons.text-right > li {
+  margin: 0 0 0 20px;
+}
+
+.widget-title {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.textwidget p,
+.widget p {
+  color: rgba(255, 255, 255, 0.8);
+}
+.table-hover tbody tr:hover {
+  background-color: #e7edf7;
+}
+.copyright p {
+  color: #fff;
+  margin: 10px 0 0;
+}
